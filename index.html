@@ -720,9 +720,27 @@
       <!-- Vue détail — Asservissement en température d'une lampe -->
       <div class="project-detail" id="detail-lampe">
         <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
-        <img class="hero-img" src="Rasp.jpg" alt="Asservissement en température d'une lampe">
+        <img class="hero-img" src="Rasp.jpg" alt="Asservissement en température d'une lampe - intro">
         <h1>Asservissement en température d'une lampe</h1>
-        <p>[Texte détaillé du projet.]</p>
+        <p>Ce projet constitue tout le travail pratique que j'ai effectué dans le cours de l'internet des objets que j'ai réalisé lors de ma mobilité au Canada à l'école de l'ETS
+          Durant celui-ci, nous devions réaliser l'asservissement en température d'une lampe en jouant sur l'allumage grâce à une PWM de la lampe et grâce à un capteur de température qui nous indiquait en temps réel la température de la lampe.
+          J'ai appris à lire les données envoyés par le capteur avec le protocole SPI. J'ai appris à contrôler l'intensité d'allumage de la lampe grâce à la génération d'un signal PWM.
+          J'ai appris à contrôler la température de cette lampe grâce à un PID permettant de réguler la température de la lampe en jouant sur la fréquence d'allumage de la lampe.
+        </p>
+        <h2>Découverte des tableaux de bord NodeRed</h2>
+        <img class="hero-img" src="NodeRed_Canada.jpg" alt="Asservissement en température d'une lampe - NodeRed">
+        <p>
+          C'est au Canada que j'ai découvert le monde des objets connectés mais c'est aussi là-bas que j'ai appris à générer et à traiter des données via le protocole MQTT.
+          Pour traiter ces données, j'ai appris à générer des tableaux de bord avec l'outil NodeRed. Sur ce tableau de bord j'ai un graphique retraçant la température de la lampe durant les 30 dernières minutes.
+          J'ai la consigne que je peux rentrer pour contrôler la température de la lampe. J'ai capturé la date et l'heure actuelle, j'ai récupéré les données publiées par un capteur bluetooth avec son adresse MAC.
+          J'ai également récupéré les données d'un accéléromètre avec son adresse MAC et enfin, j'ai récupéré les données sur la météo de Montréal qui était publié sur un API.
+        </p>
+        <h2>Génération de fichiers CSV</h2>
+        <img class="hero-img" src="CSV.jpg" alt="Asservissement en température d'une lampe - CSV">
+        <p>
+          J'ai également appris à générer des fichiers CSV automatiquement grâce aux données qui circulent. Ainsi j'ai pu lancer l'asservissement en température de la lampe avec plusieurs consignes et le fichier CSV se générait automatiquement en présentant sur chaque ligne les différentes caractéristiques que je lui ai imposé.
+          J'ai ensuite, pu utiliser ces différents fichiers CSV pour tracer l'évolution de la température de la lampe en fonction du temps et observer si le PID que j'ai utilisé était fonctionnel.
+        </p>
       </div>
 
     </div>
