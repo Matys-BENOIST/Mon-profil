@@ -299,7 +299,20 @@
     padding:12px;
     border:1px solid var(--line);
   }
-
+  .video-wrap {
+  position: relative;
+  max-width: 640px; /* Adaptez cette largeur max selon vos besoins (ex: 500px, 700px...) */
+  margin: 0 auto 28px auto; /* Centre la vidéo horizontalement avec une marge en bas */
+  border-radius: 4px;
+  overflow: hidden;
+}
+.video-wrap video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
   /* =========================================================
      ONGLET 4 — LE RUGBY (fond sombre, distinct des autres)
   ========================================================= */
