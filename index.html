@@ -109,6 +109,7 @@
     flex-shrink:0;
     border-radius:4px;
     object-fit:cover;
+    object-position:center top;
     background:var(--chalk-2);
     border:1px solid var(--line);
   }
@@ -176,11 +177,24 @@
     gap:24px;
   }
   .exp-item:first-child{ border-top:none; padding-top:0; }
+  .exp-left{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .exp-logo{
+    width:52px;
+    height:52px;
+    object-fit:contain;
+    background:var(--chalk-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:8px;
+  }
   .exp-date{
     font-size:13px;
     color:var(--gold);
     font-weight:600;
-    padding-top:4px;
   }
   .exp-title{
     font-family:var(--font-display);
@@ -314,7 +328,8 @@
     .projects-grid{ grid-template-columns:1fr; }
     .rugby-cols{ grid-template-columns:1fr; gap:8px; }
     .tab-btn{ padding:16px 14px; font-size:13px; }
-    .exp-item{ grid-template-columns:1fr; gap:4px; }
+    .exp-item{ grid-template-columns:1fr; gap:12px; }
+    .exp-left{ flex-direction:row; align-items:center; gap:12px; }
   }
 </style>
 </head>
@@ -389,7 +404,10 @@
 
       <div class="exp-list">
         <div class="exp-item">
-          <div class="exp-date">[Mois Année — Mois Année]</div>
+          <div class="exp-left">
+            <img class="exp-logo" src="REMPLACE_PAR_LOGO_1.png" alt="[Nom entreprise 1]">
+            <div class="exp-date">[Mois Année — Mois Année]</div>
+          </div>
           <div>
             <div class="exp-title">[Intitulé du poste, ex : Stagiaire Ingénieur IoT]</div>
             <div class="exp-org">[Entreprise — Ville]</div>
@@ -397,7 +415,10 @@
           </div>
         </div>
         <div class="exp-item">
-          <div class="exp-date">[Mois Année — Mois Année]</div>
+          <div class="exp-left">
+            <img class="exp-logo" src="REMPLACE_PAR_LOGO_2.png" alt="[Nom entreprise 2]">
+            <div class="exp-date">[Mois Année — Mois Année]</div>
+          </div>
           <div>
             <div class="exp-title">[Intitulé du poste]</div>
             <div class="exp-org">[Entreprise — Ville]</div>
@@ -405,14 +426,17 @@
           </div>
         </div>
         <div class="exp-item">
-          <div class="exp-date">[Mois Année — Mois Année]</div>
+          <div class="exp-left">
+            <img class="exp-logo" src="REMPLACE_PAR_LOGO_3.png" alt="[Nom entreprise 3]">
+            <div class="exp-date">[Mois Année — Mois Année]</div>
+          </div>
           <div>
             <div class="exp-title">[Intitulé du poste]</div>
             <div class="exp-org">[Entreprise — Ville]</div>
             <p>[Missions réalisées, résultats concrets, technologies utilisées.]</p>
           </div>
         </div>
-        <!-- Duplique un .exp-item pour ajouter une expérience -->
+        <!-- Duplique un .exp-item pour ajouter une expérience (avec son .exp-left logo + date) -->
       </div>
     </div>
   </section>
