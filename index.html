@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[Ton prénom] [Ton nom]</title>
+<title>Matys BENOIST</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -163,7 +163,38 @@
   }
 
   /* =========================================================
-     ONGLET 2 — MES PROJETS
+     ONGLET 2 — MON EXPÉRIENCE PROFESSIONNELLE
+  ========================================================= */
+  .exp-list{
+    margin-top:32px;
+  }
+  .exp-item{
+    border-top:1px solid var(--line);
+    padding:28px 0;
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:24px;
+  }
+  .exp-item:first-child{ border-top:none; padding-top:0; }
+  .exp-date{
+    font-size:13px;
+    color:var(--gold);
+    font-weight:600;
+    padding-top:4px;
+  }
+  .exp-title{
+    font-family:var(--font-display);
+    font-size:20px;
+    margin-bottom:2px;
+  }
+  .exp-org{
+    font-size:14px;
+    opacity:.65;
+    margin-bottom:10px;
+  }
+
+  /* =========================================================
+     ONGLET 3 — MES PROJETS
   ========================================================= */
   .projects-grid{
     display:grid;
@@ -225,7 +256,7 @@
   }
 
   /* =========================================================
-     ONGLET 3 — LE RUGBY (fond sombre, distinct des autres)
+     ONGLET 4 — LE RUGBY (fond sombre, distinct des autres)
   ========================================================= */
   #panel-rugby{ background:var(--pitch); color:var(--chalk); }
   #panel-rugby .wrap{ max-width:880px; }
@@ -252,7 +283,7 @@
   .value-item p{ font-size:14px; margin:0; }
 
   /* =========================================================
-     ONGLET 4 — ME CONTACTER
+     ONGLET 5 — ME CONTACTER
   ========================================================= */
   .contact-list{
     list-style:none;
@@ -283,6 +314,7 @@
     .projects-grid{ grid-template-columns:1fr; }
     .rugby-cols{ grid-template-columns:1fr; gap:8px; }
     .tab-btn{ padding:16px 14px; font-size:13px; }
+    .exp-item{ grid-template-columns:1fr; gap:4px; }
   }
 </style>
 </head>
@@ -291,6 +323,7 @@
   <!-- ===================== BARRE D'ONGLETS ===================== -->
   <nav class="tabbar">
     <button class="tab-btn active" data-tab="moi" onclick="showTab('moi')">Moi et mon parcours</button>
+    <button class="tab-btn" data-tab="experience" onclick="showTab('experience')">Mon expérience professionnelle</button>
     <button class="tab-btn" data-tab="projets" onclick="showTab('projets')">Mes projets</button>
     <button class="tab-btn" data-tab="rugby" onclick="showTab('rugby')">Le rugby</button>
     <button class="tab-btn" data-tab="contact" onclick="showTab('contact')">Me contacter</button>
@@ -301,8 +334,7 @@
     <div class="wrap">
 
       <div class="about-hero">
-        <!-- Remplace ce div par une balise <img src="ta-photo.jpg" class="about-photo"> -->
-        <img src="profil.jpg" class="about-photo>
+        <img src="profil.jpg" class="about-photo">
         <div>
           <h1>Matys BENOIST</h1>
           <div class="role">Ingénieur Systèmes Embarqués et IoT</div>
@@ -319,7 +351,7 @@
       <h2>Mon parcours</h2>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timeline-date">[2023 — aujourd'hui]</div>
+          <div class="timeline-date">2023 — aujourd'hui</div>
           <div class="timeline-title">Diplôme d'ingénieur en Systèmes Embarqués option Systèmes Nomades</div>
           <p>Dans l'école de l'ESIX Normandie à Caen. J'ai découvert dans cette formation le monde des Systèmes Embarqués, de la programmation en C, en Java et une introduction à l'IA</p>
         </div>
@@ -349,7 +381,43 @@
     </div>
   </section>
 
-  <!-- ===================== ONGLET 2 : MES PROJETS ===================== -->
+  <!-- ===================== ONGLET 2 : MON EXPÉRIENCE PROFESSIONNELLE ===================== -->
+  <section id="panel-experience" class="panel">
+    <div class="wrap">
+      <h1>Mon expérience professionnelle</h1>
+      <p style="opacity:.7;">[Une phrase d'intro : le type de missions qui t'intéressent, ton secteur.]</p>
+
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-date">[Mois Année — Mois Année]</div>
+          <div>
+            <div class="exp-title">[Intitulé du poste, ex : Stagiaire Ingénieur IoT]</div>
+            <div class="exp-org">[Entreprise — Ville]</div>
+            <p>[Missions réalisées, résultats concrets, technologies utilisées.]</p>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-date">[Mois Année — Mois Année]</div>
+          <div>
+            <div class="exp-title">[Intitulé du poste]</div>
+            <div class="exp-org">[Entreprise — Ville]</div>
+            <p>[Missions réalisées, résultats concrets, technologies utilisées.]</p>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-date">[Mois Année — Mois Année]</div>
+          <div>
+            <div class="exp-title">[Intitulé du poste]</div>
+            <div class="exp-org">[Entreprise — Ville]</div>
+            <p>[Missions réalisées, résultats concrets, technologies utilisées.]</p>
+          </div>
+        </div>
+        <!-- Duplique un .exp-item pour ajouter une expérience -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ONGLET 3 : MES PROJETS ===================== -->
   <section id="panel-projets" class="panel">
     <div class="wrap">
 
@@ -430,7 +498,7 @@
     </div>
   </section>
 
-  <!-- ===================== ONGLET 3 : LE RUGBY ===================== -->
+  <!-- ===================== ONGLET 4 : LE RUGBY ===================== -->
   <section id="panel-rugby" class="panel">
     <div class="wrap">
       <div class="eyebrow">[Ton club actuel / poste sur le terrain]</div>
@@ -466,7 +534,7 @@
     </div>
   </section>
 
-  <!-- ===================== ONGLET 4 : ME CONTACTER ===================== -->
+  <!-- ===================== ONGLET 5 : ME CONTACTER ===================== -->
   <section id="panel-contact" class="panel">
     <div class="wrap">
       <h1>Me contacter</h1>
