@@ -171,32 +171,6 @@
     margin-top:20px;
   }
   .skill-group h3{
-    font-family:var(--font-display);
-    font-size:17px;
-    margin-bottom:14px;
-  }
-  .skill-tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-  .skill-tag{
-    font-size:13px;
-    padding:7px 14px;
-    background:var(--chalk-2);
-    border:1px solid var(--line);
-    border-radius:20px;
-    white-space:nowrap;
-  }
-
-  .skills-section{ margin-top:56px; }
-  .skills-cols{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    margin-top:24px;
-  }
-  .skill-group h3{
     font-family:var(--font-body);
     font-size:13px;
     text-transform:uppercase;
@@ -353,6 +327,29 @@
   }
   .value-item p{ font-size:14px; margin:0; }
 
+  .rugby-stories{ margin-top:56px; }
+  .rugby-story{
+    display:flex;
+    gap:32px;
+    align-items:flex-start;
+    padding:32px 0;
+    border-top:1px solid var(--line-light);
+  }
+  .rugby-story:first-of-type{ border-top:none; padding-top:0; }
+  .rugby-story img{
+    width:220px;
+    height:220px;
+    flex-shrink:0;
+    object-fit:cover;
+    border-radius:4px;
+    border:1px solid var(--line-light);
+  }
+  .rugby-story h3{
+    color:var(--chalk);
+    font-size:20px;
+    margin-bottom:10px;
+  }
+
   /* =========================================================
      ONGLET 5 — ME CONTACTER
   ========================================================= */
@@ -385,6 +382,8 @@
     .skills-cols{ grid-template-columns:1fr; gap:24px; }
     .projects-grid{ grid-template-columns:1fr; }
     .rugby-cols{ grid-template-columns:1fr; gap:8px; }
+    .rugby-story{ flex-direction:column; gap:16px; }
+    .rugby-story img{ width:100%; height:auto; aspect-ratio:4/3; }
     .tab-btn{ padding:16px 14px; font-size:13px; }
     .exp-item{ grid-template-columns:1fr; gap:12px; }
     .exp-left{ flex-direction:row; align-items:center; gap:12px; }
@@ -721,8 +720,40 @@
           </div>
         </div>
       </div>
-      <h1>Mon parcours rugbystique à Caen</h1>
-      <h1>Mon parcours rugbystique à Montréal</h1>
+
+      <div class="rugby-stories">
+        <div class="rugby-story">
+          <img src="Jeunes.jpg" alt="Mon parcours rugbystique chez les jeunes">
+          <div>
+            <h3>Mon parcours rugbystique chez les jeunes</h3>
+            <p>J'ai commencé le rugby à 9 ans au Bayeux Rugby Club, c'est dans celui-ci que j'ai découvert l'amour du ballon ovale et que j'ai fait mes premières rencontres.
+              Mon parcours se poursuit avec le club d'Hérouville lorsque je suis monté en cadets. Nous avons fini champions en régional 2 malgrè en effectif hétérogène qui avait du mal à rassembler 16 jeunes pour chaque match.
+              J'ai ensuite continué avec le rassemblement de 4 clubs du Calvados qui sont Bayeux, Caen, Hérouville et Bernières lorsque je suis monté en juniors.
+              Nous avons fini champions Grand-Ouest.
+            </p>
+          </div>
+        </div>
+        <div class="rugby-story">
+          <img src="Caen.jpg" alt="Mon parcours rugbystique à Caen">
+          <div>
+            <h3>Mon parcours rugbystique à Caen</h3>
+            <p>Après le rassemblement en juniors, j'ai décidé de continuer le rugby en séniors au Stade Caennais Rugby Club qui était en Fédéral 3 et avait pour ambition de monter en Fédéral 2.
+              J'occupais initialement le poste de premier centre ou deuxième centre mais après quelques saisons j'ai basculé vers le poste de pilier suite à la demande du staff.
+              Après 5 saisons de dure labeur et après une lutte administrative, nous avons finalement réussi à monter en Fédéral 2.
+            </p>
+          </div>
+        </div>
+        <div class="rugby-story">
+          <img src="Montreal.jpg" alt="Mon parcours rugbystique à Montréal">
+          <div>
+            <h3>Mon parcours rugbystique à Montréal</h3>
+            <p>Dans le cadre de ma mobilité obligatoire à l'étranger, j'ai choisi d'aller au Canada et plus particulièrement à Montréal à l'ETS qui proposait un statut d'étudiant-athlète.
+              J'ai donc rejoins les piranhas de l'ETS, j'ai appris à rejoindre un collectif et à jouer avec de nouveaux coéquipiers sur une courte durée. J'ai pu découvrir à quoi pouvait ressembler le haut niveau avec l'exigence physique et sportive imposée par ce cursus.
+              Cette saison, nous avons fini champion du québec et vice-champion du Canada. C'était une formidable aventure qui m'a permis de découvrir une autre culture, de nouvelles personnes et un lieu où le sport est essentiel dans la vie de chacun.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
