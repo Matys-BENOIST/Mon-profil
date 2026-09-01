@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Ton prénom] [Ton nom]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* =========================================================
+     PALETTE — modifie ces variables pour changer les couleurs
+     partout d'un coup
+  ========================================================= */
+  :root{
+    --pitch:      #16302A;   /* vert profond, fond des sections sombres */
+    --pitch-2:    #1F3F37;   /* vert légèrement plus clair, dégradés discrets */
+    --chalk:      #F1EFE6;   /* blanc craie, fond clair principal */
+    --chalk-2:    #E7E3D4;   /* fond clair secondaire, cartes */
+    --ink:        #1B1A16;   /* texte principal sur fond clair */
+    --gold:       #C1892F;   /* accent — numéro de maillot */
+    --line:       rgba(27,26,22,0.14);
+    --line-light: rgba(241,239,230,0.22);
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--chalk);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:var(--font-display);
+    font-weight:600;
+    margin:0 0 .4em 0;
+    line-height:1.1;
+  }
+  p{ line-height:1.6; margin:0 0 1em 0; }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+
+  /* =========================================================
+     BARRE D'ONGLETS
+  ========================================================= */
+  .tabbar{
+    position:sticky; top:0; z-index:50;
+    display:flex;
+    background:var(--pitch);
+    color:var(--chalk);
+    overflow-x:auto;
+    border-bottom:1px solid var(--line-light);
+  }
+  .tabbar::-webkit-scrollbar{ display:none; }
+  .tab-btn{
+    flex:1 1 auto;
+    white-space:nowrap;
+    padding:18px 20px;
+    background:none;
+    border:none;
+    color:var(--chalk);
+    opacity:.6;
+    font-family:var(--font-body);
+    font-size:14px;
+    letter-spacing:.02em;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    transition:opacity .2s ease, border-color .2s ease;
+  }
+  .tab-btn:hover{ opacity:.85; }
+  .tab-btn.active{
+    opacity:1;
+    border-bottom-color:var(--gold);
+  }
+
+  .panel{ display:none; }
+  .panel.active{ display:block; }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:64px 24px 96px;
+  }
+
+  .eyebrow{
+    font-size:13px;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+
+  /* =========================================================
+     ONGLET 1 — MOI ET MON PARCOURS
+  ========================================================= */
+  .about-hero{
+    display:flex;
+    gap:40px;
+    align-items:flex-start;
+    margin-bottom:56px;
+  }
+  .about-photo{
+    width:180px;
+    height:180px;
+    flex-shrink:0;
+    border-radius:4px;
+    object-fit:cover;
+    background:var(--chalk-2);
+    border:1px solid var(--line);
+  }
+  .about-photo.placeholder{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink);
+    opacity:.4;
+    font-size:13px;
+    text-align:center;
+    padding:16px;
+  }
+  .about-hero h1{ font-size:40px; }
+  .about-hero .role{
+    font-size:17px;
+    color:var(--ink);
+    opacity:.7;
+    margin-bottom:14px;
+  }
+
+  .timeline{
+    border-left:2px solid var(--line);
+    margin-left:6px;
+    padding-left:28px;
+  }
+  .timeline-item{
+    position:relative;
+    padding-bottom:32px;
+  }
+  .timeline-item:last-child{ padding-bottom:0; }
+  .timeline-item::before{
+    content:"";
+    position:absolute;
+    left:-33px;
+    top:6px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+  .timeline-date{
+    font-size:13px;
+    color:var(--gold);
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .timeline-title{
+    font-family:var(--font-display);
+    font-size:19px;
+    margin-bottom:4px;
+  }
+
+  /* =========================================================
+     ONGLET 2 — MES PROJETS
+  ========================================================= */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .project-card{
+    display:block;
+    text-align:left;
+    background:var(--chalk-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    cursor:pointer;
+    padding:0;
+    font-family:var(--font-body);
+  }
+  .project-card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    background:#cfcabb;
+  }
+  .project-card .pc-body{ padding:18px; }
+  .project-card h3{ font-size:18px; margin-bottom:6px; }
+  .project-card p{
+    font-size:14px;
+    opacity:.75;
+    margin-bottom:10px;
+  }
+  .project-card .pc-link{
+    font-size:13px;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  /* fiche détail projet */
+  .project-detail{ display:none; }
+  .project-detail.active{ display:block; }
+  .back-btn{
+    background:none;
+    border:none;
+    font-family:var(--font-body);
+    font-size:14px;
+    color:var(--ink);
+    opacity:.7;
+    cursor:pointer;
+    margin-bottom:28px;
+    padding:0;
+  }
+  .back-btn:hover{ opacity:1; }
+  .project-detail img.hero-img{
+    width:100%;
+    max-height:340px;
+    object-fit:cover;
+    border-radius:4px;
+    margin-bottom:28px;
+    background:var(--chalk-2);
+  }
+
+  /* =========================================================
+     ONGLET 3 — LE RUGBY (fond sombre, distinct des autres)
+  ========================================================= */
+  #panel-rugby{ background:var(--pitch); color:var(--chalk); }
+  #panel-rugby .wrap{ max-width:880px; }
+  #panel-rugby h1, #panel-rugby h2{ color:var(--chalk); }
+  #panel-rugby .eyebrow{ color:var(--gold); }
+  #panel-rugby p{ color:var(--chalk); opacity:.85; }
+
+  .rugby-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    margin-top:40px;
+  }
+  .value-item{
+    border-top:1px solid var(--line-light);
+    padding:18px 0;
+  }
+  .value-item:first-child{ border-top:none; padding-top:0; }
+  .value-item h3{
+    color:var(--chalk);
+    font-size:17px;
+    margin-bottom:6px;
+  }
+  .value-item p{ font-size:14px; margin:0; }
+
+  /* =========================================================
+     ONGLET 4 — ME CONTACTER
+  ========================================================= */
+  .contact-list{
+    list-style:none;
+    margin:32px 0 0 0;
+    padding:0;
+    border-top:1px solid var(--line);
+  }
+  .contact-list li{ border-bottom:1px solid var(--line); }
+  .contact-list a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 4px;
+    text-decoration:none;
+    font-size:17px;
+    font-family:var(--font-display);
+  }
+  .contact-list a:hover{ color:var(--gold); }
+  .contact-list .arrow{ opacity:.5; font-family:var(--font-body); }
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+  @media (max-width:640px){
+    .wrap{ padding:40px 18px 72px; }
+    .about-hero{ flex-direction:column; gap:20px; }
+    .about-hero h1{ font-size:30px; }
+    .projects-grid{ grid-template-columns:1fr; }
+    .rugby-cols{ grid-template-columns:1fr; gap:8px; }
+    .tab-btn{ padding:16px 14px; font-size:13px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== BARRE D'ONGLETS ===================== -->
+  <nav class="tabbar">
+    <button class="tab-btn active" data-tab="moi" onclick="showTab('moi')">Moi et mon parcours</button>
+    <button class="tab-btn" data-tab="projets" onclick="showTab('projets')">Mes projets</button>
+    <button class="tab-btn" data-tab="rugby" onclick="showTab('rugby')">Le rugby</button>
+    <button class="tab-btn" data-tab="contact" onclick="showTab('contact')">Me contacter</button>
+  </nav>
+
+  <!-- ===================== ONGLET 1 : MOI ET MON PARCOURS ===================== -->
+  <section id="panel-moi" class="panel active">
+    <div class="wrap">
+
+      <div class="about-hero">
+        <!-- Remplace ce div par une balise <img src="ta-photo.jpg" class="about-photo"> -->
+        <div class="about-photo placeholder">[Ta photo ici]</div>
+        <div>
+          <h1>[Prénom Nom]</h1>
+          <div class="role">[Ton titre / poste actuel, ex : Étudiant ingénieur — Automatisation & IoT]</div>
+          <p>
+            [Quelques phrases de présentation : qui tu es, ce que tu fais aujourd'hui,
+            ce qui te caractérise. Reste simple et direct, comme si tu te présentais
+            à quelqu'un en entretien.]
+          </p>
+        </div>
+      </div>
+
+      <h2>Mon parcours</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">[2024 — aujourd'hui]</div>
+          <div class="timeline-title">[Intitulé de l'étape]</div>
+          <p>[Description courte : établissement, entreprise, ce que tu y as fait/appris.]</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">[Année]</div>
+          <div class="timeline-title">[Intitulé de l'étape]</div>
+          <p>[Description courte.]</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">[Année]</div>
+          <div class="timeline-title">[Intitulé de l'étape]</div>
+          <p>[Description courte.]</p>
+        </div>
+        <!-- Duplique un .timeline-item pour ajouter une étape -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== ONGLET 2 : MES PROJETS ===================== -->
+  <section id="panel-projets" class="panel">
+    <div class="wrap">
+
+      <!-- Vue liste des projets -->
+      <div id="projects-list">
+        <h1>Mes projets</h1>
+        <p style="opacity:.7; margin-bottom:36px;">[Une phrase d'intro sur ta manière d'aborder tes projets.]</p>
+
+        <div class="projects-grid">
+
+          <div class="project-card" onclick="showProject('ptl')">
+            <img src="REMPLACE_PAR_IMAGE_PTL.jpg" alt="Pick To Light">
+            <div class="pc-body">
+              <h3>Pick To Light</h3>
+              <p>Système de préparation de commandes assisté par LEDs (Python, ESP32, MQTT, Node-RED).</p>
+              <div class="pc-link">Voir le détail →</div>
+            </div>
+          </div>
+
+          <div class="project-card" onclick="showProject('projet2')">
+            <img src="REMPLACE_PAR_IMAGE.jpg" alt="[Nom du projet 2]">
+            <div class="pc-body">
+              <h3>[Nom du projet 2]</h3>
+              <p>[Résumé en une phrase, visible sur la carte.]</p>
+              <div class="pc-link">Voir le détail →</div>
+            </div>
+          </div>
+
+          <div class="project-card" onclick="showProject('projet3')">
+            <img src="REMPLACE_PAR_IMAGE.jpg" alt="[Nom du projet 3]">
+            <div class="pc-body">
+              <h3>[Nom du projet 3]</h3>
+              <p>[Résumé en une phrase, visible sur la carte.]</p>
+              <div class="pc-link">Voir le détail →</div>
+            </div>
+          </div>
+
+          <!--
+            Pour ajouter un projet :
+            1. Duplique un bloc .project-card ci-dessus (change l'id dans onclick="showProject('...')")
+            2. Duplique un bloc .project-detail ci-dessous avec le MÊME id
+          -->
+
+        </div>
+      </div>
+
+      <!-- Vue détail — Pick To Light -->
+      <div class="project-detail" id="detail-ptl">
+        <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
+        <img class="hero-img" src="REMPLACE_PAR_IMAGE_PTL.jpg" alt="Pick To Light">
+        <h1>Pick To Light</h1>
+        <p>
+          [Décris ici en détail : le contexte du projet, le problème que ça résout,
+          comment ça fonctionne (ex : un fichier texte représente un bon de préparation,
+          chaque ligne = un article à prélever, les données sont envoyées à un ESP32
+          qui pilote un bandeau de LEDs, un écran et un bouton de validation),
+          les technos utilisées (Python, ESP32, MQTT, Node-RED, dashboard),
+          les difficultés rencontrées et ce que tu en as retenu.]
+        </p>
+      </div>
+
+      <!-- Vue détail — Projet 2 -->
+      <div class="project-detail" id="detail-projet2">
+        <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
+        <img class="hero-img" src="REMPLACE_PAR_IMAGE.jpg" alt="[Nom du projet 2]">
+        <h1>[Nom du projet 2]</h1>
+        <p>[Texte détaillé du projet.]</p>
+      </div>
+
+      <!-- Vue détail — Projet 3 -->
+      <div class="project-detail" id="detail-projet3">
+        <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
+        <img class="hero-img" src="REMPLACE_PAR_IMAGE.jpg" alt="[Nom du projet 3]">
+        <h1>[Nom du projet 3]</h1>
+        <p>[Texte détaillé du projet.]</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== ONGLET 3 : LE RUGBY ===================== -->
+  <section id="panel-rugby" class="panel">
+    <div class="wrap">
+      <div class="eyebrow">[Ton club actuel / poste sur le terrain]</div>
+      <h1>Le rugby</h1>
+      <p>
+        [Raconte ton parcours rugby : depuis quand tu joues, les clubs traversés,
+        ton poste, le niveau atteint, ce que ce sport représente pour toi.]
+      </p>
+
+      <h2 style="margin-top:48px;">Ce que ça m'apporte pour le travail en entreprise</h2>
+      <div class="rugby-cols">
+        <div>
+          <div class="value-item">
+            <h3>[Valeur 1, ex : Esprit collectif]</h3>
+            <p>[Comment cette valeur, apprise sur le terrain, se retrouve dans ta façon de travailler en équipe.]</p>
+          </div>
+          <div class="value-item">
+            <h3>[Valeur 2, ex : Gestion de l'échec]</h3>
+            <p>[Exemple concret.]</p>
+          </div>
+        </div>
+        <div>
+          <div class="value-item">
+            <h3>[Valeur 3, ex : Discipline / rigueur]</h3>
+            <p>[Exemple concret.]</p>
+          </div>
+          <div class="value-item">
+            <h3>[Valeur 4, ex : Leadership / prise de décision]</h3>
+            <p>[Exemple concret.]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ONGLET 4 : ME CONTACTER ===================== -->
+  <section id="panel-contact" class="panel">
+    <div class="wrap">
+      <h1>Me contacter</h1>
+      <p style="opacity:.7;">[Une phrase d'invitation à te contacter.]</p>
+
+      <ul class="contact-list">
+        <li><a href="mailto:ton.email@exemple.com" target="_blank">Email <span class="arrow">→</span></a></li>
+        <li><a href="https://linkedin.com/in/TON-PROFIL" target="_blank">LinkedIn <span class="arrow">→</span></a></li>
+        <li><a href="https://github.com/TON-PROFIL" target="_blank">GitHub <span class="arrow">→</span></a></li>
+        <li><a href="https://instagram.com/TON-PROFIL" target="_blank">Instagram <span class="arrow">→</span></a></li>
+        <!-- Duplique une ligne <li> pour ajouter un autre réseau -->
+      </ul>
+    </div>
+  </section>
+
+<script>
+  // Changement d'onglet
+  function showTab(name){
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    document.querySelector('.tab-btn[data-tab="' + name + '"]').classList.add('active');
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+
+  // Ouvrir la fiche détail d'un projet
+  function showProject(id){
+    document.getElementById('projects-list').style.display = 'none';
+    document.querySelectorAll('.project-detail').forEach(d => d.classList.remove('active'));
+    document.getElementById('detail-' + id).classList.add('active');
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+
+  // Revenir à la liste des projets
+  function backToProjects(){
+    document.querySelectorAll('.project-detail').forEach(d => d.classList.remove('active'));
+    document.getElementById('projects-list').style.display = 'block';
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+</script>
+
+</body>
+</html>
