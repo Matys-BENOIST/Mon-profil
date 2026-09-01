@@ -163,6 +163,61 @@
     margin-bottom:4px;
   }
 
+  .skills-block{ margin-top:56px; }
+  .skills-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    margin-top:20px;
+  }
+  .skill-group h3{
+    font-family:var(--font-display);
+    font-size:17px;
+    margin-bottom:14px;
+  }
+  .skill-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .skill-tag{
+    font-size:13px;
+    padding:7px 14px;
+    background:var(--chalk-2);
+    border:1px solid var(--line);
+    border-radius:20px;
+    white-space:nowrap;
+  }
+
+  .skills-section{ margin-top:56px; }
+  .skills-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    margin-top:24px;
+  }
+  .skill-group h3{
+    font-family:var(--font-body);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--gold);
+    margin-bottom:14px;
+    font-weight:600;
+  }
+  .skill-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .skill-tag{
+    background:var(--chalk-2);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:6px 14px;
+    font-size:14px;
+  }
+
   /* =========================================================
      ONGLET 2 — MON EXPÉRIENCE PROFESSIONNELLE
   ========================================================= */
@@ -262,11 +317,13 @@
   .back-btn:hover{ opacity:1; }
   .project-detail img.hero-img{
     width:100%;
-    max-height:340px;
-    object-fit:cover;
+    max-height:480px;
+    object-fit:contain;
     border-radius:4px;
     margin-bottom:28px;
     background:var(--chalk-2);
+    padding:12px;
+    border:1px solid var(--line);
   }
 
   /* =========================================================
@@ -325,6 +382,7 @@
     .wrap{ padding:40px 18px 72px; }
     .about-hero{ flex-direction:column; gap:20px; }
     .about-hero h1{ font-size:30px; }
+    .skills-cols{ grid-template-columns:1fr; gap:24px; }
     .projects-grid{ grid-template-columns:1fr; }
     .rugby-cols{ grid-template-columns:1fr; gap:8px; }
     .tab-btn{ padding:16px 14px; font-size:13px; }
@@ -391,6 +449,30 @@
           <p>Dans le collège Alain Chartier à Bayeux</p>
         </div>
         <!-- Duplique un .timeline-item pour ajouter une étape -->
+      </div>
+
+      <div class="skills-block">
+        <h2>Compétences</h2>
+        <div class="skills-cols">
+          <div class="skill-group">
+            <h3>Langues</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">[Français — natif]</span>
+              <span class="skill-tag">[Anglais — niveau]</span>
+              <!-- Duplique un .skill-tag pour ajouter une langue -->
+            </div>
+          </div>
+          <div class="skill-group">
+            <h3>Langages informatiques</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">HTML / CSS / JavaScript</span>
+              <!-- Duplique un .skill-tag pour ajouter un langage -->
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
