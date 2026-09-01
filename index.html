@@ -409,7 +409,7 @@
         <div class="exp-item">
           <div class="exp-left">
             <img class="exp-logo" src="Acadomia.jpg" alt="Acadomia">
-            <div class="exp-date">[septembre 2024 — aujourd'hui]</div>
+            <div class="exp-date">septembre 2024 — aujourd'hui</div>
           </div>
           <div>
             <div class="exp-title">Professeur particulier</div>
@@ -420,7 +420,7 @@
         <div class="exp-item">
           <div class="exp-left">
             <img class="exp-logo" src="Coulidoor.jpg" alt="Coulidoor">
-            <div class="exp-date">[Mars 2026 — Septembre 2026]</div>
+            <div class="exp-date">Mars 2026 — Septembre 2026</div>
           </div>
           <div>
             <div class="exp-title">Stagiaire ingénieur IoT</div>
@@ -431,7 +431,7 @@
         <div class="exp-item">
           <div class="exp-left">
             <img class="exp-logo" src="NHa.jpg" alt="NHa">
-            <div class="exp-date">[Mai 2025 — Juillet 2025]</div>
+            <div class="exp-date">Mai 2025 — Juillet 2025</div>
           </div>
           <div>
             <div class="exp-title">Stagiaire Ingénieur Automaticien</div>
@@ -442,7 +442,7 @@
         <div class="exp-item">
           <div class="exp-left">
             <img class="exp-logo" src="SCRC.jpg" alt="SCRC">
-            <div class="exp-date">[Octobre 2023 — Juin 2024]</div>
+            <div class="exp-date">Octobre 2023 — Juin 2024</div>
           </div>
           <div>
             <div class="exp-title">Service civique</div>
@@ -453,7 +453,7 @@
         <div class="exp-item">
           <div class="exp-left">
             <img class="exp-logo" src="Supplyweb.jpg" alt="Supplyweb">
-            <div class="exp-date">[Ete 2024 — Ete 2025]</div>
+            <div class="exp-date">Ete 2024 — Ete 2025</div>
           </div>
           <div>
             <div class="exp-title">Préparateur de commandes</div>
@@ -464,7 +464,7 @@
         <div class="exp-item">
           <div class="exp-left">
             <img class="exp-logo" src="Cora.jpg" alt="Cora">
-            <div class="exp-date">[Ete 2020 — Ete 2022]</div>
+            <div class="exp-date">Ete 2020 — Ete 2022</div>
           </div>
           <div>
             <div class="exp-title">Approvisionneur de rayon</div>
@@ -537,6 +537,7 @@
       <div class="project-detail" id="detail-ptl">
         <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
         <h1>Pick To Light</h1>
+        <img class="hero-img" src="PTL_intro.jpg" alt="Pick To Light — vue d'ensemble">
         <p>
           Ce projet est né d'un besoin de l'entreprise Coulidoor d'ajouter un détrompeur visuel pour ses opérateurs au service de la préparation d'accessoires car celui-ci représente un fort pourcentage des SAV venant de la production.
           La conception, la réalisation et le déploiement de ce Système Pick To Light est donc mon sujet de stage pour ma 5ème année dans l'école de l'ESIX Normandie.
@@ -545,21 +546,21 @@
           de profilés en aluminium et de caches opaques et il fonctionne de la manière suivante : 
         </p>
         <h2>Architecture du système</h2>
-        <img class="hero-img" src="Architecture.jpg" alt="Pick To Light">
+        <img class="hero-img" src="Architecture.jpg" alt="Pick To Light — architecture">
         <p>
           Silog qui est l'ERP de Coulidoor, détecte lorsqu'un opérateur clique sur un bon de commande, il génère ensuite un fichier qui est envoyé et décrypté par la Raspberry Pi 5,
           celle-ci envoie ensuite aux différents ESP32 répartis dans toute la zone les emplacements des leds à allumer qui leurs sont associées. Les ESP32 allument ensuite ces leds.
           Le système met à jour les leds, c'est-à-dire qu'il éteint toutes les leds puis allume les leds présent sur le bon de commande à chaque clic sur un nouveau bon de commande des opérateurs.
         </p>
         <h2>Tableau de bord Node-Red</h2>
-        <img class="hero-img" src="NodeRed.jpg" alt="Pick To Light">
+        <img class="hero-img" src="NodeRed.jpg" alt="Pick To Light — tableau de bord Node-RED">
         <p>
           En même temps des données sur les leds allumées circulent, le tableau de bord permet de voir en temps réel les différentes leds allumées, il affiche également
           des données sur l'avancée du bon de commande avec le temps de préparation et le temps restant prévu, il retraçe le temps de chaque prise d'article et indique
           en temps réel si l'opérateur est ralenti ou même bloqué ce uqi permet de savoir s'il faut venir débloquer la situation.
         </p>
         <h2>Système avec les leds</h2>
-        <img class="hero-img" src="Leds.jpg" alt="Pick To Light">
+        <img class="hero-img" src="Leds.jpg" alt="Pick To Light — bandeau de leds">
         <p>
           Chaque article possède son bandeau de leds, celui-ci est composé de bandeaux de leds qui ont été découpés puis soudés à des connecteurs JST-SM.
           C'est cette architecture qui a été choisie car elle permet une maintenance rapide su système, les pannes sont locales et n'impactent pas les autres parties du système
@@ -567,34 +568,34 @@
           et par des caches opaques qui permettent de limiter la luminosité des bandeaux de leds et permettent donc d'assurer le confort des opérateurs.
         </p>
         <h2>Système avec les écrans</h2>
-        <img class="hero-img" src="Ecrans.jpg" alt="Pick To Light">
+        <img class="hero-img" src="Ecrans.jpg" alt="Pick To Light — écrans lcd">
         <p>
           Une alternative aux leds peut-être les écrans. Ceux-ci, à l'aide de multiplexeurs permettent d'afficher la référence de l'article, son emplacement et permet également d'indiquer 
           le nombre d'articles à prélever.
         </p>
       </div>
 
-      <!-- Vue détail — Projet 2 -->
-      <div class="project-detail" id="detail-projet2">
+      <!-- Vue détail — Application Calculateur de Macros -->
+      <div class="project-detail" id="detail-macro">
         <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
-        <img class="hero-img" src="REMPLACE_PAR_IMAGE.jpg" alt="[Nom du projet 2]">
-        <h1>[Nom du projet 2]</h1>
+        <img class="hero-img" src="Macros.jpg" alt="Application Calculateur de Macros">
+        <h1>Application Calculateur de Macros</h1>
         <p>[Texte détaillé du projet.]</p>
       </div>
 
-      <!-- Vue détail — Projet 3 -->
-      <div class="project-detail" id="detail-projet3">
+      <!-- Vue détail — Bille sur plateau -->
+      <div class="project-detail" id="detail-bille">
         <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
-        <img class="hero-img" src="REMPLACE_PAR_IMAGE.jpg" alt="[Nom du projet 3]">
-        <h1>[Nom du projet 3]</h1>
+        <img class="hero-img" src="Bille.jpg" alt="Bille sur plateau">
+        <h1>Bille sur plateau</h1>
         <p>[Texte détaillé du projet.]</p>
       </div>
 
-      <!-- Vue détail — Projet 3 -->
-      <div class="project-detail" id="detail-projet3">
+      <!-- Vue détail — Asservissement en température d'une lampe -->
+      <div class="project-detail" id="detail-lampe">
         <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
-        <img class="hero-img" src="REMPLACE_PAR_IMAGE.jpg" alt="[Nom du projet 3]">
-        <h1>[Nom du projet 3]</h1>
+        <img class="hero-img" src="Rasp.jpg" alt="Asservissement en température d'une lampe">
+        <h1>Asservissement en température d'une lampe</h1>
         <p>[Texte détaillé du projet.]</p>
       </div>
 
