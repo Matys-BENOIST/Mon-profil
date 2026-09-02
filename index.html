@@ -42,7 +42,12 @@
     margin:0 0 .4em 0;
     line-height:1.1;
   }
-  p{ line-height:1.6; margin:0 0 1em 0; }
+  p{
+    line-height:1.6;
+    margin:0 0 1em 0;
+    text-align:justify;
+    text-justify:inter-word;
+  }
   a{ color:inherit; }
   img{ max-width:100%; display:block; }
 
@@ -267,6 +272,7 @@
     font-size:14px;
     opacity:.75;
     margin-bottom:10px;
+    text-align:left;
   }
   .project-card .pc-link{
     font-size:13px;
@@ -299,20 +305,44 @@
     padding:12px;
     border:1px solid var(--line);
   }
-  .video-wrap {
-  position: relative;
-  max-width: 640px; /* Adaptez cette largeur max selon vos besoins (ex: 500px, 700px...) */
-  margin: 0 auto 28px auto; /* Centre la vidéo horizontalement avec une marge en bas */
-  border-radius: 4px;
-  overflow: hidden;
-}
-.video-wrap video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 4px;
-  border: 1px solid var(--line);
-}
+
+  .video-wrap{
+    position:relative;
+    max-width:420px;
+    margin:0 auto 28px auto;
+    border-radius:4px;
+    overflow:hidden;
+    background:#0b0b0b;
+    border:1px solid var(--line);
+  }
+  .video-wrap video{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .video-play-btn{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:var(--chalk);
+    border:none;
+    padding:12px 24px;
+    border-radius:30px;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,.35);
+    z-index:2;
+  }
+  .video-play-btn:hover{ opacity:.9; }
+  .video-wrap.is-playing .video-play-btn{ display:none; }
+
   /* =========================================================
      ONGLET 4 — LE RUGBY (fond sombre, distinct des autres)
   ========================================================= */
@@ -400,6 +430,7 @@
     .tab-btn{ padding:16px 14px; font-size:13px; }
     .exp-item{ grid-template-columns:1fr; gap:12px; }
     .exp-left{ flex-direction:row; align-items:center; gap:12px; }
+    .video-wrap{ max-width:100%; }
   }
 </style>
 </head>
@@ -636,7 +667,7 @@
         <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
         <h1>Pick To Light</h1>
         <div class="video-wrap" id="ptl-video-wrap">
-          <video id ="ptl-video" poster="PTL.jpg" playsinline>
+          <video id="ptl-video" poster="PTL.jpg" playsinline>
             <source src="PTL_video.mp4" type="video/mp4">
           </video>
           <button class="video-play-btn" onclick="playPTLVideo()">▶ Démarrer</button>
@@ -857,6 +888,15 @@
     document.querySelectorAll('.project-detail').forEach(d => d.classList.remove('active'));
     document.getElementById('projects-list').style.display = 'block';
     window.scrollTo({top:0, behavior:'instant'});
+  }
+
+  // Démarrer la vidéo Pick To Light au clic sur le bouton
+  function playPTLVideo(){
+    const wrap = document.getElementById('ptl-video-wrap');
+    const video = document.getElementById('ptl-video');
+    wrap.classList.add('is-playing');
+    video.setAttribute('controls', '');
+    video.play();
   }
 </script>
 
