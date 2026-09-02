@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matys BENOIST</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%2314264C'/%3E%3Ctext x='50' y='67' font-family='Georgia,serif' font-size='46' fill='%23F6F5F1' text-anchor='middle'%3EMB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -52,6 +53,25 @@
   }
   a{ color:inherit; }
   img{ max-width:100%; display:block; }
+
+  /* =========================================================
+     BOUTONS DE TÉLÉCHARGEMENT
+  ========================================================= */
+  .download-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:var(--chalk);
+    padding:12px 22px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+    font-family:var(--font-body);
+    transition:opacity .15s ease, transform .15s ease;
+  }
+  .download-btn:hover{ opacity:.9; transform:translateY(-1px); }
 
   /* =========================================================
      BARRE D'ONGLETS
@@ -191,7 +211,7 @@
   .skills-block{ margin-top:56px; }
   .skills-cols{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr;
     gap:40px;
     margin-top:20px;
   }
@@ -482,6 +502,9 @@
     .exp-left{ flex-direction:row; align-items:center; gap:12px; }
     .video-wrap{ max-width:100%; }
   }
+  @media (max-width:820px){
+    .skills-cols{ grid-template-columns:1fr 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -512,6 +535,7 @@
             personnels. Je pratique le rugby depuis 15 ans à
             Caen au niveau de Fédéral 2.
           </p>
+          <a class="download-btn" href="CV_Matys_Benoist.pdf" download>📄 Télécharger mon CV</a>
         </div>
       </div>
 
@@ -568,6 +592,18 @@
               <span class="skill-tag">SQL - débutant</span>
               <span class="skill-tag">Excel - confirmé</span>
               <!-- Duplique un .skill-tag pour ajouter un langage -->
+            </div>
+          </div>
+          <div class="skill-group">
+            <h3>Outils & logiciels</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Node-RED</span>
+              <span class="skill-tag">Solidworks</span>
+              <span class="skill-tag">Matlab</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Découpe laser / impression 3D</span>
+              <span class="skill-tag">Raspbery Pi, ESP32, STM32</span>
+              <!-- Duplique un .skill-tag pour ajouter un outil -->
             </div>
           </div>
         </div>
@@ -761,6 +797,8 @@
           Une alternative aux leds peut-être les écrans. Ceux-ci, à l'aide de multiplexeurs permettent d'afficher la référence de l'article, son emplacement et permet également d'indiquer 
           le nombre d'articles à prélever.
         </p>
+
+        <a class="download-btn" href="Rapport_Stage_PTL.pdf" download>📄 Télécharger le rapport de stage</a>
       </div>
 
       <!-- Vue détail — Application Calculateur de Macros -->
@@ -792,14 +830,14 @@
         <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
         <img class="hero-img" src="Bille.jpg" alt="Bille sur plateau">
         <h1>Bille sur plateau</h1>
-        <p>Dans le cadre de ma 4ème année dans l'école de l'ESIX Normandie, nous devions réaliser un projet de robotique. Avec quelques-uns de me camarades, nous avons été missionnés de réaliser un système capable de maitenir une bille sur un plateau.
+        <p>Dans le cadre de ma 4ème année dans l'école de l'ESIX Normandie, nous devions réaliser un projet de robotique. Avec quelques uns de me camarades, nous avons été missioné de réaliser un système capable de maitenir une bille sur un plateau.
         </p>
         <p>
           Durant ce projet, nous avons réutilisé toutes nos connaissances concernant la mécanique, l'électronique, l'automatique et la programmation. Nous avons utilisé
           une imprimante 3D et une découpeuse laser pour réaliser les différentes pièces permettant de maintenir les servomoteurs utilisés, le plateau et le système de manière générale.
         </p>
         <p>
-          Il fallait trouver des équations mécaniques pour planifier le comportement des différents servomoteurs, nous avons donc utilisé nos connaissances en mécanique acquises durant notre cursus pour trouver ces équations.
+          Il fallait trouver des équations mécanique pour planifier le comportement des différents servomoteurs, nous avons donc utilisé nos connaissances en mécanique acquises durant notre cursus pour trouver ces équations.
           Des alimentations et des câbles permettaient d'alimenter en électricité le système. Nous avons utilisé une caméra pour suivre en temps réel la position de la bille sur le plateau et nous avons transmis des consignes aux servomoteurs en fonction de cette position relevée pour maintenir la bille sur le plateau.
           Un régulateur PID a été utilisé pour contrôler la force de réaction des différents servomoteurs pour stabiliser la bille sur le plateau. A savoir qu'un régulateur PID est un outil permettant de stabiliser une valeur en fonction de la valeur d'entrée.
         </p>
@@ -807,6 +845,8 @@
           Finalement, le système n'était pas assez réactif car il y avait trop de délai entre la capture de l'image et la transmission des consignes aux servomoteurs donc le système ne permettait de maintenir que temporairement la bille sur le plateau.
           Néanmoins ce projet nous aura permis de voir comment construire et réaliser un projet tout en nous coordonnant pour être le plus efficace possible et mener à bien la mission.
         </p>
+
+        <a class="download-btn" href="Rapport_Projet_Bille.pdf" download>📄 Télécharger le rapport de projet</a>
       </div>
 
       <!-- Vue détail — Asservissement en température d'une lampe -->
@@ -837,6 +877,8 @@
           J'ai également étudier comment générer des fichiers CSV automatiquement grâce aux données qui circulent. Ainsi j'ai pu lancer l'asservissement en température de la lampe avec plusieurs consignes et le fichier CSV présentant les différentes caractéristiques que je lui ai imposé se générait automatiquement.
           J'ai ensuite, pu utiliser ces différents fichiers CSV pour tracer l'évolution de la température de la lampe en fonction du temps et observer si le régulateur PID que j'ai utilisé était fonctionnel.
         </p>
+
+        <a class="download-btn" href="Rapport_Laboratoire_Asservissement.pdf" download>📄 Télécharger le rapport de laboratoire</a>
       </div>
 
     </div>
