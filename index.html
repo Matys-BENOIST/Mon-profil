@@ -47,6 +47,8 @@
     margin:0 0 1em 0;
     text-align:justify;
     text-justify:inter-word;
+    hyphens:auto;
+    -webkit-hyphens:auto;
   }
   a{ color:inherit; }
   img{ max-width:100%; display:block; }
@@ -75,13 +77,18 @@
     font-size:14px;
     letter-spacing:.02em;
     cursor:pointer;
-    border-bottom:3px solid transparent;
-    transition:opacity .2s ease, border-color .2s ease;
+    transition:opacity .2s ease;
   }
   .tab-btn:hover{ opacity:.85; }
-  .tab-btn.active{
-    opacity:1;
-    border-bottom-color:var(--gold);
+  .tab-btn.active{ opacity:1; }
+
+  .tab-indicator{
+    position:absolute;
+    bottom:0;
+    height:3px;
+    background:var(--gold);
+    border-radius:2px 2px 0 0;
+    transition:left .3s cubic-bezier(.4,0,.2,1), width .3s cubic-bezier(.4,0,.2,1);
   }
 
   .panel{ display:none; }
@@ -97,6 +104,19 @@
     font-size:13px;
     color:var(--gold);
     margin-bottom:10px;
+  }
+
+  /* =========================================================
+     ANIMATIONS D'APPARITION AU DÉFILEMENT
+  ========================================================= */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
   }
 
   /* =========================================================
@@ -195,6 +215,11 @@
     border-radius:20px;
     padding:6px 14px;
     font-size:14px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .skill-tag:hover{
+    transform:translateY(-2px);
+    background:#dfe1ea;
   }
 
   /* =========================================================
@@ -205,12 +230,19 @@
   }
   .exp-item{
     border-top:1px solid var(--line);
-    padding:28px 0;
+    padding:28px 16px;
+    margin:0 -16px;
     display:grid;
     grid-template-columns:160px 1fr;
     gap:24px;
+    border-radius:6px;
+    transition:background .2s ease, transform .2s ease;
   }
-  .exp-item:first-child{ border-top:none; padding-top:0; }
+  .exp-item:hover{
+    background:var(--chalk-2);
+    transform:translateX(4px);
+  }
+  .exp-item:first-child{ border-top:none; }
   .exp-left{
     display:flex;
     flex-direction:column;
@@ -259,13 +291,20 @@
     cursor:pointer;
     padding:0;
     font-family:var(--font-body);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .project-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 24px rgba(22,33,59,.14);
   }
   .project-card img{
     width:100%;
     height:150px;
     object-fit:cover;
     background:#cfcabb;
+    transition:transform .3s ease;
   }
+  .project-card:hover img{ transform:scale(1.04); }
   .project-card .pc-body{ padding:18px; }
   .project-card h3{ font-size:18px; margin-bottom:6px; }
   .project-card p{
@@ -339,14 +378,18 @@
     cursor:pointer;
     box-shadow:0 6px 20px rgba(0,0,0,.35);
     z-index:2;
+    transition:transform .15s ease;
   }
-  .video-play-btn:hover{ opacity:.9; }
+  .video-play-btn:hover{ opacity:.9; transform:translate(-50%,-50%) scale(1.05); }
   .video-wrap.is-playing .video-play-btn{ display:none; }
 
   /* =========================================================
      ONGLET 4 — LE RUGBY (fond sombre, distinct des autres)
   ========================================================= */
-  #panel-rugby{ background:var(--pitch); color:var(--chalk); }
+  #panel-rugby{
+    background:radial-gradient(ellipse at top left, var(--pitch-2) 0%, var(--pitch) 55%);
+    color:var(--chalk);
+  }
   #panel-rugby .wrap{ max-width:880px; }
   #panel-rugby h1, #panel-rugby h2{ color:var(--chalk); }
   #panel-rugby .eyebrow{ color:var(--gold); }
@@ -375,9 +418,13 @@
     display:flex;
     gap:32px;
     align-items:flex-start;
-    padding:32px 0;
+    padding:32px 16px;
+    margin:0 -16px;
     border-top:1px solid var(--line-light);
+    border-radius:6px;
+    transition:background .2s ease;
   }
+  .rugby-story:hover{ background:rgba(246,245,241,.05); }
   .rugby-story:first-of-type{ border-top:none; padding-top:0; }
   .rugby-story img{
     width:220px;
@@ -386,7 +433,9 @@
     object-fit:cover;
     border-radius:4px;
     border:1px solid var(--line-light);
+    transition:transform .3s ease;
   }
+  .rugby-story:hover img{ transform:scale(1.03); }
   .rugby-story h3{
     color:var(--chalk);
     font-size:20px;
@@ -411,8 +460,9 @@
     text-decoration:none;
     font-size:17px;
     font-family:var(--font-display);
+    transition:padding-left .2s ease, color .2s ease;
   }
-  .contact-list a:hover{ color:var(--gold); }
+  .contact-list a:hover{ color:var(--gold); padding-left:10px; }
   .contact-list .arrow{ opacity:.5; font-family:var(--font-body); }
 
   /* =========================================================
@@ -437,12 +487,13 @@
 <body>
 
   <!-- ===================== BARRE D'ONGLETS ===================== -->
-  <nav class="tabbar">
+  <nav class="tabbar" style="position:sticky; top:0;">
     <button class="tab-btn active" data-tab="moi" onclick="showTab('moi')">Moi et mon parcours</button>
     <button class="tab-btn" data-tab="experience" onclick="showTab('experience')">Mon expérience professionnelle</button>
     <button class="tab-btn" data-tab="projets" onclick="showTab('projets')">Mes projets</button>
     <button class="tab-btn" data-tab="rugby" onclick="showTab('rugby')">Le rugby</button>
     <button class="tab-btn" data-tab="contact" onclick="showTab('contact')">Me contacter</button>
+    <div class="tab-indicator" id="tab-indicator"></div>
   </nav>
 
   <!-- ===================== ONGLET 1 : MOI ET MON PARCOURS ===================== -->
@@ -466,27 +517,27 @@
 
       <h2>Mon parcours</h2>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-date">2023 — aujourd'hui</div>
           <div class="timeline-title">Diplôme d'ingénieur en Systèmes Embarqués option Systèmes Nomades</div>
           <p>Dans l'école de l'ESIX Normandie à Caen. J'ai découvert dans cette formation le monde des Systèmes Embarqués, de la programmation en C, en Java et une introduction à l'IA.</p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-date">2025</div>
           <div class="timeline-title">Programme court de premier cycle</div>
           <p>A l'école de l'ETS Montréal au Canada. En tant qu'étudiant-athlète là-bas j'ai exploré le monde de l'IoT et de la programmation en HTML, CSS et Javascript.</p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-date">2020-2023</div>
           <div class="timeline-title">Classe préparatoire aux grandes écoles en Physique-Chimie</div>
           <p>Au lycée Victor Hugo à Caen, j'ai été initié à l'univers de la programmation en Python</p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-date">2017-2020</div>
           <div class="timeline-title">Diplôme du baccalauréat mention bien</div>
           <p>Dans le lycée Alain Chartier à Bayeux, j'ai développé un attrait pour le monde des sciences</p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal">
           <div class="timeline-date">2013-2017</div>
           <div class="timeline-title">DNB mention très bien</div>
           <p>Dans le collège Alain Chartier à Bayeux</p>
@@ -494,7 +545,7 @@
         <!-- Duplique un .timeline-item pour ajouter une étape -->
       </div>
 
-      <div class="skills-block">
+      <div class="skills-block reveal">
         <h2>Compétences</h2>
         <div class="skills-cols">
           <div class="skill-group">
@@ -535,7 +586,7 @@
       </p>
 
       <div class="exp-list">
-        <div class="exp-item">
+        <div class="exp-item reveal">
           <div class="exp-left">
             <img class="exp-logo" src="Acadomia.jpg" alt="Acadomia">
             <div class="exp-date">septembre 2024 — aujourd'hui</div>
@@ -546,7 +597,7 @@
             <p>Soutien scolaire pour des lycéens et des étudiants en Mathématiques, en Physique-Chimie et en Programmation.</p>
           </div>
         </div>
-        <div class="exp-item">
+        <div class="exp-item reveal">
           <div class="exp-left">
             <img class="exp-logo" src="Coulidoor.jpg" alt="Coulidoor">
             <div class="exp-date">Mars 2026 — Septembre 2026</div>
@@ -557,7 +608,7 @@
             <p>Conception, réalisation et déploiement d'un système Pick To Light pour le service de la préparation d'accessoires.</p>
           </div>
         </div>
-        <div class="exp-item">
+        <div class="exp-item reveal">
           <div class="exp-left">
             <img class="exp-logo" src="NHa.jpg" alt="NHa">
             <div class="exp-date">Mai 2025 — Juillet 2025</div>
@@ -568,7 +619,7 @@
             <p>Intervention sur le système Contrôle-Commande du projet du C-400.</p>
           </div>
         </div>
-        <div class="exp-item">
+        <div class="exp-item reveal">
           <div class="exp-left">
             <img class="exp-logo" src="Supplyweb.jpg" alt="Supplyweb">
             <div class="exp-date">Ete 2024 — Ete 2025</div>
@@ -579,7 +630,7 @@
             <p>Préparation de commandes de clients de Supplyweb durant les mois de Juillet et Août 2024 et 2025.</p>
           </div>
         </div>
-        <div class="exp-item">
+        <div class="exp-item reveal">
           <div class="exp-left">
             <img class="exp-logo" src="SCRC.jpg" alt="SCRC">
             <div class="exp-date">Octobre 2023 — Juin 2024</div>
@@ -590,7 +641,7 @@
             <p>Educateur des catégories (U10) et (U12).</p>
           </div>
         </div>
-        <div class="exp-item">
+        <div class="exp-item reveal">
           <div class="exp-left">
             <img class="exp-logo" src="Cora.jpg" alt="Cora">
             <div class="exp-date">Ete 2020 — Ete 2022</div>
@@ -617,7 +668,7 @@
 
         <div class="projects-grid">
 
-          <div class="project-card" onclick="showProject('ptl')">
+          <div class="project-card reveal" onclick="showProject('ptl')">
             <img src="PTL.jpg" alt="Pick To Light">
             <div class="pc-body">
               <h3>Pick To Light</h3>
@@ -626,7 +677,7 @@
             </div>
           </div>
 
-          <div class="project-card" onclick="showProject('macro')">
+          <div class="project-card reveal" onclick="showProject('macro')">
             <img src="Macros.jpg" alt="Macros">
             <div class="pc-body">
               <h3>Application Calculateur de Macros</h3>
@@ -635,7 +686,7 @@
             </div>
           </div>
 
-          <div class="project-card" onclick="showProject('bille')">
+          <div class="project-card reveal" onclick="showProject('bille')">
             <img src="Bille.jpg" alt="Bille">
             <div class="pc-body">
               <h3>Bille sur plateau</h3>
@@ -644,7 +695,7 @@
             </div>
           </div>
 
-          <div class="project-card" onclick="showProject('lampe')">
+          <div class="project-card reveal" onclick="showProject('lampe')">
             <img src="Rasp.jpg" alt="Rasp">
             <div class="pc-body">
               <h3>Asservissement en température d'une lampe</h3>
@@ -741,14 +792,14 @@
         <button class="back-btn" onclick="backToProjects()">← Retour aux projets</button>
         <img class="hero-img" src="Bille.jpg" alt="Bille sur plateau">
         <h1>Bille sur plateau</h1>
-        <p>Dans le cadre de ma 4ème année dans l'école de l'ESIX Normandie, nous devions réaliser un projet de robotique. Avec quelques uns de me camarades, nous avons été missioné de réaliser un système capable de maitenir une bille sur un plateau.
+        <p>Dans le cadre de ma 4ème année dans l'école de l'ESIX Normandie, nous devions réaliser un projet de robotique. Avec quelques-uns de me camarades, nous avons été missionnés de réaliser un système capable de maitenir une bille sur un plateau.
         </p>
         <p>
           Durant ce projet, nous avons réutilisé toutes nos connaissances concernant la mécanique, l'électronique, l'automatique et la programmation. Nous avons utilisé
           une imprimante 3D et une découpeuse laser pour réaliser les différentes pièces permettant de maintenir les servomoteurs utilisés, le plateau et le système de manière générale.
         </p>
         <p>
-          Il fallait trouver des équations mécanique pour planifier le comportement des différents servomoteurs, nous avons donc utilisé nos connaissances en mécanique acquises durant notre cursus pour trouver ces équations.
+          Il fallait trouver des équations mécaniques pour planifier le comportement des différents servomoteurs, nous avons donc utilisé nos connaissances en mécanique acquises durant notre cursus pour trouver ces équations.
           Des alimentations et des câbles permettaient d'alimenter en électricité le système. Nous avons utilisé une caméra pour suivre en temps réel la position de la bille sur le plateau et nous avons transmis des consignes aux servomoteurs en fonction de cette position relevée pour maintenir la bille sur le plateau.
           Un régulateur PID a été utilisé pour contrôler la force de réaction des différents servomoteurs pour stabiliser la bille sur le plateau. A savoir qu'un régulateur PID est un outil permettant de stabiliser une valeur en fonction de la valeur d'entrée.
         </p>
@@ -768,7 +819,7 @@
           A savoir que la PWM est une technique permettant de simuler une tension variable en utilisant un signal numérique, nous jouons sur le rythme d'allumage de la lampe pour simuler une intensité.
          </p>
         <p>
-           J'ai appris à lire les données envoyés par le capteur avec le protocole SPI qui est le protcole par lequel communique le capteur. J'ai découvert comment contrôler l'intensité d'allumage de la lampe grâce à la génération d'un signal PWM.
+           J'ai appris à lire les données envoyés par le capteur avec le protocole SPI qui est le protocole par lequel communique le capteur. J'ai découvert comment contrôler l'intensité d'allumage de la lampe grâce à la génération d'un signal PWM.
           J'ai réussi à contrôler la température de cette lampe grâce à un régulateur PID permettant de réguler la température de la lampe en jouant sur la fréquence d'allumage de la lampe. A savoir qu'un régulateur PID est un outil permettant de stabiliser une valeur en fonction de la valeur d'entrée.
         </p>
         
@@ -777,7 +828,7 @@
         <p>
           C'est au Canada que j'ai été initié au monde des objets connectés mais c'est aussi là-bas que j'ai appris à générer et à traiter des données via le protocole MQTT.
           Pour traiter ces données, j'ai acquis des compétences pour générer des tableaux de bord avec l'outil NodeRed. Sur ce tableau de bord j'ai un graphique retraçant la température de la lampe durant les 30 dernières minutes.
-          On observe la consigne que je peux rentrer pour contrôler la température de la lampe. La date et l'heure actuelle ont été capturé, les données publiées par un capteur bluetooth avec son adresse MAC ont été récupéré.
+          On observe la consigne que je peux rentrer pour contrôler la température de la lampe. La date et l'heure actuelle ont été capturées, les données publiées par un capteur bluetooth avec son adresse MAC ont été récupérées.
           J'ai également intercepté les données d'un accéléromètre avec son adresse MAC et enfin, j'ai transmis les données sur la météo de Montréal qui était publié sur un API.
         </p>
         <h2>Génération de fichiers CSV</h2>
@@ -804,21 +855,21 @@
       <h2 style="margin-top:48px;">Ce que ça m'apporte pour le travail en entreprise</h2>
       <div class="rugby-cols">
         <div>
-          <div class="value-item">
+          <div class="value-item reveal">
             <h3>Le Respect</h3>
             <p>Pour la hiérarchie, les collègues et surtout pour soi-même.</p>
           </div>
-          <div class="value-item">
+          <div class="value-item reveal">
             <h3>Le travail d'équipe</h3>
             <p>La capacité à échanger avec les autres pour mener à bien une mission.</p>
           </div>
         </div>
         <div>
-          <div class="value-item">
+          <div class="value-item reveal">
             <h3>L'exigence</h3>
             <p>Ceci me pousse à toujours élargir mon domaine de compétences.</p>
           </div>
-          <div class="value-item">
+          <div class="value-item reveal">
             <h3>Le mérite</h3>
             <p>Toute récompense n'est pas gratuite, elle est issue d'un travail rigoureux.</p>
           </div>
@@ -826,7 +877,7 @@
       </div>
 
       <div class="rugby-stories">
-        <div class="rugby-story">
+        <div class="rugby-story reveal">
           <img src="Jeunes.jpg" alt="Mon parcours rugbystique chez les jeunes">
           <div>
             <h3>Mon parcours rugbystique chez les jeunes</h3>
@@ -837,7 +888,7 @@
             </p>
           </div>
         </div>
-        <div class="rugby-story">
+        <div class="rugby-story reveal">
           <img src="Caen.jpg" alt="Mon parcours rugbystique à Caen">
           <div>
             <h3>Mon parcours rugbystique à Caen</h3>
@@ -847,7 +898,7 @@
             </p>
           </div>
         </div>
-        <div class="rugby-story">
+        <div class="rugby-story reveal">
           <img src="Montreal.jpg" alt="Mon parcours rugbystique à Montréal">
           <div>
             <h3>Mon parcours rugbystique à Montréal</h3>
@@ -885,8 +936,11 @@
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('panel-' + name).classList.add('active');
-    document.querySelector('.tab-btn[data-tab="' + name + '"]').classList.add('active');
+    const btn = document.querySelector('.tab-btn[data-tab="' + name + '"]');
+    btn.classList.add('active');
+    moveIndicator(btn);
     window.scrollTo({top:0, behavior:'instant'});
+    initRevealObserver();
   }
 
   // Ouvrir la fiche détail d'un projet
@@ -912,6 +966,36 @@
     video.setAttribute('controls', '');
     video.play();
   }
+
+  // Soulignement d'onglet qui glisse vers l'onglet actif
+  function moveIndicator(btn){
+    const indicator = document.getElementById('tab-indicator');
+    indicator.style.left = btn.offsetLeft + 'px';
+    indicator.style.width = btn.offsetWidth + 'px';
+  }
+  window.addEventListener('load', () => {
+    moveIndicator(document.querySelector('.tab-btn.active'));
+  });
+  window.addEventListener('resize', () => {
+    moveIndicator(document.querySelector('.tab-btn.active'));
+  });
+
+  // Apparition en fondu au défilement
+  let revealObserver;
+  function initRevealObserver(){
+    if(!revealObserver){
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+    }
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => revealObserver.observe(el));
+  }
+  document.addEventListener('DOMContentLoaded', initRevealObserver);
 </script>
 </body>
 </html>
