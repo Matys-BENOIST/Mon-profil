@@ -10,8 +10,8 @@
 <!-- IMPORTANT : og:image doit être une URL absolue vers une VRAIE image déjà en ligne sur ton dépôt (pas une data URI, contrairement au favicon). Remplace l'URL ci-dessous par ton lien GitHub Pages une fois profil.jpg uploadé. -->
 <meta property="og:title" content="Matys Benoist — Ingénieur Systèmes Embarqués / IoT">
 <meta property="og:description" content="Portfolio de Matys Benoist : parcours, expériences, projets IoT et systèmes embarqués, et rugby.">
-<meta property="og:image" content="https://matysbenoist6-cmd.github.io/Appli-Matys-/profil.jpg">
-<meta property="og:url" content="https://matysbenoist6-cmd.github.io/Appli-Matys-/">
+<meta property="og:image" content="https://matys-benoist.github.io/Mon-profil/profil.jpg">
+<meta property="og:url" content="https://matys-benoist.github.io/Mon-profil/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -513,6 +513,41 @@
   .contact-icon svg{ width:18px; height:18px; }
   .contact-label{ flex:1; }
   .contact-list .arrow{ opacity:.5; font-family:var(--font-body); }
+
+  .qr-block{
+    margin-top:48px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:24px;
+  }
+  .qr-block img{
+    width:120px;
+    height:120px;
+    background:#fff;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .qr-caption{
+    font-size:14px;
+    opacity:.7;
+    max-width:320px;
+    text-align:left;
+  }
+  .qr-caption strong{
+    display:block;
+    font-family:var(--font-display);
+    font-size:16px;
+    color:var(--ink);
+    opacity:1;
+    margin-bottom:4px;
+  }
+  @media (max-width:480px){
+    .qr-block{ flex-direction:column; align-items:flex-start; }
+  }
 
   /* =========================================================
      RESPONSIVE
