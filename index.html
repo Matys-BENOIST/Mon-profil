@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matys BENOIST ingénieur Systèmes embarqués / IoT</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%2314264C'/%3E%3Ctext x='50' y='67' font-family='Georgia,serif' font-size='46' fill='%23F6F5F1' text-anchor='middle'%3EMB%3C/text%3E%3C/svg%3E">
+
+<!-- Aperçu de partage (LinkedIn, WhatsApp, Messages, Slack...) -->
+<!-- IMPORTANT : og:image doit être une URL absolue vers une VRAIE image déjà en ligne sur ton dépôt (pas une data URI, contrairement au favicon). Remplace l'URL ci-dessous par ton lien GitHub Pages une fois profil.jpg uploadé. -->
+<meta property="og:title" content="Matys Benoist — Ingénieur Systèmes Embarqués / IoT">
+<meta property="og:description" content="Portfolio de Matys Benoist : parcours, expériences, projets IoT et systèmes embarqués, et rugby.">
+<meta property="og:image" content="https://matysbenoist6-cmd.github.io/Appli-Matys-/profil.jpg">
+<meta property="og:url" content="https://matysbenoist6-cmd.github.io/Appli-Matys-/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -475,7 +485,7 @@
   .contact-list a{
     display:flex;
     align-items:center;
-    justify-content:space-between;
+    gap:14px;
     padding:20px 4px;
     text-decoration:none;
     font-size:17px;
@@ -483,6 +493,25 @@
     transition:padding-left .2s ease, color .2s ease;
   }
   .contact-list a:hover{ color:var(--gold); padding-left:10px; }
+  .contact-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    flex-shrink:0;
+    border-radius:8px;
+    background:var(--chalk-2);
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .contact-list a:hover .contact-icon{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:var(--chalk);
+  }
+  .contact-icon svg{ width:18px; height:18px; }
+  .contact-label{ flex:1; }
   .contact-list .arrow{ opacity:.5; font-family:var(--font-body); }
 
   /* =========================================================
@@ -963,11 +992,43 @@
       </p>
 
       <ul class="contact-list">
-        <li><a href="mailto:matys.benoist6@gmail.com" target="_blank">Email <span class="arrow">→</span></a></li>
-        <li><a href="https://www.linkedin.com/in/matys-benoist/" target="_blank">LinkedIn <span class="arrow">→</span></a></li>
-        <li><a href="https://www.instagram.com/matysbenoist/" target="_blank">Instagram <span class="arrow">→</span></a></li>
-        <li><a href="https://www.facebook.com/profile.php?id=100008526793653" target="_blank">Facebook <span class="arrow">→</span></a></li>
-        <!-- Duplique une ligne <li> pour ajouter un autre réseau -->
+        <li>
+          <a href="mailto:matys.benoist6@gmail.com" target="_blank">
+            <span class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </span>
+            <span class="contact-label">Email</span>
+            <span class="arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/matys-benoist/" target="_blank">
+            <span class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="9" r="1.2" fill="currentColor" stroke="none"/><path d="M8 12v5M13 17v-3.2c0-1.2.9-1.8 1.9-1.8s1.6.7 1.6 1.9V17"/></svg>
+            </span>
+            <span class="contact-label">LinkedIn</span>
+            <span class="arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/matysbenoist/" target="_blank">
+            <span class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="contact-label">Instagram</span>
+            <span class="arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/profile.php?id=100008526793653" target="_blank">
+            <span class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M14 8h-1.5A1.5 1.5 0 0 0 11 9.5V11h3l-.5 3H11v6" fill="none"/></svg>
+            </span>
+            <span class="contact-label">Facebook</span>
+            <span class="arrow">→</span>
+          </a>
+        </li>
+        <!-- Duplique une ligne <li> pour ajouter un autre réseau, avec son propre svg dans .contact-icon -->
       </ul>
     </div>
   </section>
